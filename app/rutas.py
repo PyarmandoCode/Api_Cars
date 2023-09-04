@@ -25,6 +25,7 @@ def handle_autos():
         autos=Autos.query.filter_by(estado=True).all()#Select * From Autos
         results = [
             {
+            "auto":auto.idauto,
             "nombre":auto.nombre,
             "detalle":auto.detalle,
             "precio":auto.precio,
@@ -39,6 +40,7 @@ def handle_auto(auto_id):
     auto=Autos.query.get_or_404(auto_id)
     if request.method == 'GET':
         response = {
+            "auto":auto.idauto,
             "nombre":auto.nombre,
             "detalle":auto.detalle,
             "precio":auto.precio,
