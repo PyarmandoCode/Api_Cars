@@ -12,7 +12,7 @@ def handle_autos():
     if request.method=='POST':
         if request.is_json:
             data=request.get_json()
-            new_auto=Autos(nombre=data['nombre'],detalle=data['detalle'],imagen=data['imagen'],precio=data['precio'],estado=data['estado'])
+            new_auto=Autos(nombre=data['nombre'],detalle=data['detalle'],imagen=data['imagen'],precio=data['precio'],estado=data['estado'],puertas=data['puertas'],automatico=data['automatico'],preciodescuento=data['preciodescuento'])
             db.session.add(new_auto)
             db.session.commit()
 
@@ -30,7 +30,10 @@ def handle_autos():
             "detalle":auto.detalle,
             "precio":auto.precio,
             "imagen":auto.imagen,
-            "estado":auto.estado
+            "estado":auto.estado,
+            "puertas":auto.puertas,
+            "automatico":auto.automatico,
+            "preciodescuento":auto.preciodescuento,
             } for auto in autos]
         
         return {"Count":len(autos),"Autos":results,"message":"success"}
@@ -45,7 +48,10 @@ def handle_auto(auto_id):
             "detalle":auto.detalle,
             "precio":auto.precio,
             "imagen":auto.imagen,
-            "estado":auto.estado
+            "estado":auto.estado,
+            "puertas":auto.puertas,
+            "automatico":auto.automatico,
+            "preciodescuento":auto.preciodescuento,
         }
         return {"message":"success","auto":response}
     
@@ -56,7 +62,10 @@ def handle_auto(auto_id):
         auto.precio=data["precio"]
         auto.imagen=data["imagen"]
         auto.estado=data["estado"]
-
+        auto.puertas=data["puertas"]
+        auto.automatico=data["automatico"]
+        auto.preciodescuento=data["preciodescuento"]
+        
         db.session.add(auto)
         db.session.commit()
 
