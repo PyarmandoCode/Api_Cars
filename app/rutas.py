@@ -12,7 +12,11 @@ def handle_autos():
     if request.method=='POST':
         if request.is_json:
             data=request.get_json()
-            new_auto=Autos(nombre=data['nombre'],detalle=data['detalle'],imagen=data['imagen'],precio=data['precio'],estado=data['estado'])
+            new_auto=Autos(nombre=data['nombre'],
+                           detalle=data['detalle'],
+                           imagen=data['imagen'],
+                           precio=data['precio']
+                           )
             db.session.add(new_auto)
             db.session.commit()
 
@@ -55,7 +59,7 @@ def handle_auto(auto_id):
         auto.detalle=data["detalle"]
         auto.precio=data["precio"]
         auto.imagen=data["imagen"]
-        auto.estado=data["estado"]
+        
         
         db.session.add(auto)
         db.session.commit()
