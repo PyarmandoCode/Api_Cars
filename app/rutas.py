@@ -1,6 +1,7 @@
 from app import app,db
 from .models import Autos
 from flask import request
+from flask_cors import CORS, cross_origin
 
 
 @app.route('/')
@@ -40,6 +41,7 @@ def handle_autos():
         return {"Count":len(autos),"Autos":results,"message":"success"}
     
 @app.route('/auto/<auto_id>',methods=['GET','PUT','DELETE']) 
+@cross_origin(origin="*", headers=["Content-Type"])
 def handle_auto(auto_id):
     auto=Autos.query.get_or_404(auto_id)
     if request.method == 'GET':
