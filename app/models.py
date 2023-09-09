@@ -7,6 +7,7 @@ class Autos(db.Model):
     imagen=db.Column(db.String())
     precio=db.Column(db.Numeric(7,2))
     estado=db.Column(db.Boolean,default=True)
+    puertas=db.Column(db.Integer)
     
     
     
