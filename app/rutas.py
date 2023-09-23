@@ -1,7 +1,7 @@
 from app import app,db
 from .models import Autos
 from flask import request
-from flask_cors import CORS, cross_origin
+
 
 
 @app.route('/')
@@ -17,7 +17,9 @@ def handle_autos():
                            detalle=data['detalle'],
                            imagen=data['imagen'],
                            precio=data['precio'],
-                           puertas=data['puertas']
+                           puertas=data['puertas'],
+                           stock=data['stock'],
+                           categoria=data['categoria']
                            )
             db.session.add(new_auto)
             db.session.commit()
@@ -37,7 +39,9 @@ def handle_autos():
             "precio":auto.precio,
             "imagen":auto.imagen,
             "estado":auto.estado,
-            "puertas":auto.puertas
+            "puertas":auto.puertas,
+            "stock":auto.stock,
+            "categoria":auto.categoria
             } for auto in autos]
         
         return {"Count":len(autos),"results":results,"message":"success"}
@@ -53,7 +57,9 @@ def handle_auto(auto_id):
             "precio":auto.precio,
             "imagen":auto.imagen,
             "estado":auto.estado,
-            "puertas":auto.puertas
+            "puertas":auto.puertas,
+            "stock":auto.stock,
+            "categoria":auto.categoria
         }
         return {"message":"success","auto":response}
     
@@ -64,6 +70,8 @@ def handle_auto(auto_id):
         auto.precio=data["precio"]
         auto.imagen=data["imagen"]
         auto.puertas=data["puertas"]
+        auto.stock=data["stock"]
+        auto.categoria=data["categoria"]
         
         
         db.session.add(auto)
