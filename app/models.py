@@ -10,6 +10,7 @@ class Autos(db.Model):
     puertas=db.Column(db.Integer)
     stock=db.Column(db.Integer)
     categoria=db.Column(db.Integer)
+    automatico=db.Column(db.Boolean,default=True)
     
     
     

@@ -19,7 +19,8 @@ def handle_autos():
                            precio=data['precio'],
                            puertas=data['puertas'],
                            stock=data['stock'],
-                           categoria=data['categoria']
+                           categoria=data['categoria'],
+                           automatico=data['automatico']
                            )
             db.session.add(new_auto)
             db.session.commit()
@@ -41,7 +42,8 @@ def handle_autos():
             "estado":auto.estado,
             "puertas":auto.puertas,
             "stock":auto.stock,
-            "categoria":auto.categoria
+            "categoria":auto.categoria,
+            "automatico":auto.automatico
             } for auto in autos]
         
         return {"Count":len(autos),"results":results,"message":"success"}
@@ -59,7 +61,8 @@ def handle_auto(auto_id):
             "estado":auto.estado,
             "puertas":auto.puertas,
             "stock":auto.stock,
-            "categoria":auto.categoria
+            "categoria":auto.categoria,
+            "automatico":auto.automatico
         }
         return {"message":"success","auto":response}
     
@@ -72,6 +75,7 @@ def handle_auto(auto_id):
         auto.puertas=data["puertas"]
         auto.stock=data["stock"]
         auto.categoria=data["categoria"]
+        auto.automatico=data['automatico']
         
         
         db.session.add(auto)
